@@ -7,13 +7,11 @@ const app = express();
 const port = process.env.port || 3001;
 const emailvalidator = require("email-validator")
 const { Client } = require('pg');
-
 const USER_BD = process.env.USER_BD
 const HOST = process.env.HOST
 const DATABASE = process.env.DATABASE
 const PASSWORD_BD = process.env.PASSWORD_BD
 const PORT_CLIENT = process.env.PORT_CLIENT
-
 const client = new Client({
   user: USER_BD,
   host: HOST,
@@ -21,18 +19,12 @@ const client = new Client({
   password: PASSWORD_BD,
   port: PORT_CLIENT,
 })
-
 client.connect()
-
-
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '1mb' }));
 
-
 app.get('/client', (req, res) => {
-    res.send(`<h1>servidor Rodando na porta ${port}...<h1/>`)
-    console.log('chegou aq')
     res.status(200).json("Welcome ");
 })
 
@@ -65,7 +57,6 @@ app.post('/client', (req, res) => {
         console.log('invalidMail')
     }
 })
-
 
 app.post('/client/interval', (req, res) => { 
     const initialDate = req.body.initialDate;
