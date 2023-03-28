@@ -1,10 +1,11 @@
 const express = require("express");
 const dotenv = require('dotenv/config.js')
 const bodyParser = require('body-parser');
+const validator = require("email-validator");
 const cors = require('cors');
 const app = express();
-const PORT = process.env.port || 3001;
-
+const port = process.env.port || 3001;
+const emailvalidator = require("email-validator")
 const { Client } = require('pg');
 
 const USER_BD = process.env.USER_BD
@@ -30,26 +31,23 @@ app.use(express.urlencoded({ limit: '1mb' }));
 
 
 app.get('/client', (req, res) => {
-    res.send(`<h1>servidor Rodando na porta ${PORT}...<h1/>`)
+    res.send(`<h1>servidor Rodando na porta ${port}...<h1/>`)
     console.log('chegou aq')
     res.status(200).json("Welcome ");
 })
 
-app.post('/client', (req, res) => {console.log('chegando bem')
+app.post('/client', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const cpf = req.body.cpf;
     const phone = req.body.phone;
     const created_at = req.body.data;
-
-    console.log(name,email,cpf,phone,created_at)
-    res.status(200);
+    if (emailvalidator.validate(email)) {
    client.query(`select * from client WHERE email = $1`, [email])
         .then(results => {
             const resultadoBuscaEmail = results
             if (resultadoBuscaEmail.rowCount === 1) {
                 res.json({ "error": "E-mail já utilizado" })
-                console.log('ja cadastrado')
             } else {
                     client.query(`INSERT INTO client (name,email,cpf,phone,created_at) VALUES ($1, $2, $3, $4, $5)`, [name, email, cpf, phone, created_at])
                         .then(results => {
@@ -62,6 +60,10 @@ app.post('/client', (req, res) => {console.log('chegando bem')
                         })
             }
         });
+    } else {
+        return res.json({"message": "email inválido."})
+        console.log('invalidMail')
+    }
 })
 
 
@@ -78,4 +80,4 @@ app.post('/client/interval', (req, res) => {
      })
 })
 
-app.listen(port, () => console.log(`Rodando na porta: ${PORT}!`));
+app.listen(port, () => console.log(`Rodando na porta: ${port}!`));
