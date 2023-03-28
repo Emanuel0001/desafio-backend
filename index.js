@@ -3,7 +3,7 @@ const dotenv = require('dotenv/config.js')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = process.env.port || 3001;
+const PORT = process.env.port || 3001;
 
 const { Client } = require('pg');
 
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ limit: '1mb' }));
 
 
 app.get('/client', (req, res) => {
-    res.send(`<h1>servidor Rodando na porta ${port}...<h1/>`)
+    res.send(`<h1>servidor Rodando na porta ${PORT}...<h1/>`)
     console.log('chegou aq')
     res.status(200).json("Welcome ");
 })
@@ -78,4 +78,4 @@ app.post('/client/interval', (req, res) => {
      })
 })
 
-app.listen(port, () => console.log(`Rodando na porta: ${port}!`));
+app.listen(port, () => console.log(`Rodando na porta: ${PORT}!`));
