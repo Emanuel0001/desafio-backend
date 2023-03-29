@@ -3,7 +3,7 @@
 ## Comando para rodar o projeto
 - npm start 
 
-## banco de dados utilizado
+## Banco de dados utilizado
 - postgreSQL
 - utilizei também o software Dbeaver client ferramenta de administração de banco de dados.
 
