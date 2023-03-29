@@ -45,24 +45,21 @@ app.post('/client', (req, res) => {
                         .then(results => {
                             const resultado = results
                             if (resultado.rowCount === 1) {
-                                return res.json({ "message": "Registrado com sucesso" });
+                                return res.json({ "message": "Successfully registered" });
                             } else {
-                                return res.json({ "error": "Erro ao Registrar" });
+                                return res.json({ "error": "Error Registering" });
                             }
                         })
             }
         });
     } else {
-        return res.json({"message": "email inválido."})
-        console.log('invalidMail')
+        return res.json({"message": "invalid email."})
     }
 })
 
 app.post('/client/interval', (req, res) => { 
     const initialDate = req.body.initialDate;
     const finalDate = req.body.finalDate;
-    res.status(200)
-    console.log('chegou',initialDate,finalDate)
     client.query(`select * from client WHERE created_at BETWEEN $1 AND $2`, [initialDate,finalDate])
     .then(results => {
           const resultado = results.rows
