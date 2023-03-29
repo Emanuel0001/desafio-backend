@@ -10,7 +10,7 @@
 
 ## Link front end:
 - Criado utilizando react 
-https://io0fanciful-taffy-fc09ee.netlify.app/
+- https://io0fanciful-taffy-fc09ee.netlify.app/
 
 ## Dependencias
 - express
