@@ -9,6 +9,7 @@ utilizei também o software Dbeaver client ferramenta de administração de banc
 
 
 ## Link front end:
+Criado utilizando react 
 https://io0fanciful-taffy-fc09ee.netlify.app/
 
 ## Dependencias
