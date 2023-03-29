@@ -39,7 +39,7 @@ app.post('/client', (req, res) => {
         .then(results => {
             const resultadoBuscaEmail = results
             if (resultadoBuscaEmail.rowCount === 1) {
-                res.json({ "error": "E-mail já utilizado" })
+                res.json({ "error": "Email already used" })
             } else {
                     client.query(`INSERT INTO client (name,email,cpf,phone,created_at) VALUES ($1, $2, $3, $4, $5)`, [name, email, cpf, phone, created_at])
                         .then(results => {
