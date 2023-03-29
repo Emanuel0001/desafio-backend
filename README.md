@@ -1,5 +1,4 @@
-# desafio-backend
-## "Desafio desenvolvedor back-end júnior"
+# "Desafio desenvolvedor back-end júnior"
 
 ## Comando para rodar o projeto
 -- npm start 
